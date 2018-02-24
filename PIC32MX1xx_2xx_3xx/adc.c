@@ -22,7 +22,7 @@ void adc_init(void) {
 				(0<<13) |			//0->continue operation in idle, 1->stop operation in idle
 				(0<< 8) |			//0->16-bit int, 1->16-bit signed, 2->fractional 16-bit, 3->signed fractional 16-bit, 4->32-bit int, 5->signed 32-bit int, 6->fractional 32-bit int, 7->signed fractional 32-bit int
 				//7=automatic conversion
-				(0<< 5) |			//0->SAMP triggers sampling, 1->int0 transition triggers adc, 2->timer3 period match triggers sampling, 7->internal counter triggers sampling
+				(7<< 5) |			//0->SAMP triggers sampling, 1->int0 transition triggers adc, 2->timer3 period match triggers sampling, 7->internal counter triggers sampling
 				(0<< 4) |			//0->normal operation, 1->stop conversions when the first adc interrupt is generated
 				//0=manual sampling
 				(1<< 2) |			//0->sampling begins when SAMP is set, 1->sampling begins immediately after last conversion (=continuous mode)

@@ -14,10 +14,10 @@ uint32_t systicks(void);
 #define ticks()						systicks()
 
 //ticks per us - arduino styled function
-#define cyclesPerMillisecond()		(F_CPU / 1000ul)
-#define cyclesPerMicrosecond()		(F_CPU / 1000000ul)
-#define millis()					(ticks() / cyclesPerMillisecond())
-#define micros()					(ticks() / cyclesPerMicrosecond())
+#define cyclesPerMillisecond()		(F_SYSTICK / 1000ul)
+#define cyclesPerMicrosecond()		(F_SYSTICK / 1000000ul)
+#define millis()					(systicks() / cyclesPerMillisecond())
+#define micros()					(systicks() / cyclesPerMicrosecond())
 
 //precision delays using ticks()
 void systick_delay(uint32_t tk);
