@@ -27,10 +27,11 @@ static volatile unsigned char _UxTX_BUSY=0;		//0=u1 transmission done, 1=u1 tran
 //void _ISR _U2TXInterrupt(void) {
 void __ISR(_UART_2_VECTOR, UxIPL) _UART2Interrupt(void) {
 	//TX interrupt only. RX not implemented
-	UxTXIF = 0;							//clear the flag
+	//UxTXIF = 0;							//clear the flag
 	if (*_UxTX_ptr) {					//0 indicates the end of the string
 		//_UxTX_ptr;					//increment to the next char
 		UxTXREG = *_UxTX_ptr++;			//load up a char to be transmitted
+		UxTXIF = 0;						//clear the flag
 	} else {
 		//UxSTA.UTXEN = 0;				//turn off the transmission
 		UxTXIE = 0;						//disable the interrupt
@@ -137,7 +138,7 @@ void uart2_init(unsigned long baud_rate)
 	//10 = Interrupt when a character is transferred to the Transmit Shift Register (TSR) and as a result, the transmit buffer becomes empty
 	//01 = Interrupt when the last character is shifted out of the Transmit Shift Register; all transmit operations are completed
 	//00 = Interrupt when a character is transferred to the Transmit Shift Register (this implies there is at least one character open in the transmit buffer)
-	UxSTA.UTXISEL1=0, UxSTA.UTXISEL0=1;
+	UxSTA.UTXISEL1=0, UxSTA.UTXISEL0=0;
 //#endif
 	//bit 14 UTXINV: IrDA® Encoder Transmit Polarity Inversion bit
 	//If IREN = 0:
@@ -221,13 +222,16 @@ void uart2_putch(char ch) {
 }
 
 void uart2_puts(char *str) {
+	char tmp;
 	if (*str) {							//if the string isn't empty to begin with
+		//UxTXREG = 0;						//clear the buffer
 		_UxTX_BUSY  = 1;					//transmission in progress
 		_UxTX_ptr=str;						//point to the string to be transmitted
 		UxTXIF = 0;							//clear the flag
 		//UxSTA.UTXEN=1;					//enable transmission - always enabled
+		//tmp = *_UxTX_ptr++;	UxTXREG = tmp;						//*_UxTX_ptr++;				//load up the 1st char. advance to the next char
+		UxTXREG = *_UxTX_ptr++;
 		UxTXIE = 1;							//enable the interrupt
-		UxTXREG = *_UxTX_ptr++;				//load up the 1st char. advance to the next char
 	}
 }
 
