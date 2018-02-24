@@ -5,7 +5,7 @@
 //#include "delay.h"						//we use software delays
 
 //hardware configuration
-#define PWM2_TO_RP()						PPS_RPB5_TO_OC2()
+#define PWM2_TO_RP()						PPS_OC2_TO_RPB5()
 //end hardware configuration
 
 //global defines

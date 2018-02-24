@@ -130,14 +130,14 @@ void mcu_init(void);                    					//reset the mcu
 #define PPS_IC4_TO_RPC0()		IC4R = 6
 #define PPS_IC4_TO_RPC5()		IC4R = 7
 
-#define PPS_SS1_TO_RPA0()		SS1R = 0
-#define PPS_SS1_TO_RPB3()		SS1R = 1
-#define PPS_SS1_TO_RPB4()		SS1R = 2
-#define PPS_SS1_TO_RPB15()		SS1R = 3
-#define PPS_SS1_TO_RPB7()		SS1R = 4
-#define PPS_SS1_TO_RPC7()		SS1R = 5
-#define PPS_SS1_TO_RPC0()		SS1R = 6
-#define PPS_SS1_TO_RPC5()		SS1R = 7
+#define PPS_SS1I_TO_RPA0()		SS1R = 0
+#define PPS_SS1I_TO_RPB3()		SS1R = 1
+#define PPS_SS1I_TO_RPB4()		SS1R = 2
+#define PPS_SS1I_TO_RPB15()		SS1R = 3
+#define PPS_SS1I_TO_RPB7()		SS1R = 4
+#define PPS_SS1I_TO_RPC7()		SS1R = 5
+#define PPS_SS1I_TO_RPC0()		SS1R = 6
+#define PPS_SS1I_TO_RPC5()		SS1R = 7
 
 #define PPS_REFCLKI_TO_RPA0()		REFCLKIR = 0
 #define PPS_REFCLKI_TO_RPB3()		REFCLKIR = 1
@@ -256,7 +256,7 @@ void mcu_init(void);                    					//reset the mcu
 #define PPS_U2CTS_TO_RPA2()		U2CTSR = 0
 #define PPS_U2CTS_TO_RPB6()		U2CTSR = 1
 #define PPS_U2CTS_TO_RPA4()		U2CTSR = 2
-#define PPS_U2CTS_TO_RPB13()		U2CTSR = 3
+#define PPS_U2CTS_TO_RPB13()	U2CTSR = 3
 #define PPS_U2CTS_TO_RPB2()		U2CTSR = 4
 #define PPS_U2CTS_TO_RPC6()		U2CTSR = 5
 #define PPS_U2CTS_TO_RPC1()		U2CTSR = 6
@@ -308,14 +308,14 @@ void mcu_init(void);                    					//reset the mcu
 #define PPS_IC2_TO_RPC2()		IC2R = 6
 #define PPS_IC2_TO_RPC4()		IC2R = 7
 
-#define PPS_SS2_TO_RPA3()		SS2R = 0
-#define PPS_SS2_TO_RPB14()		SS2R = 1
-#define PPS_SS2_TO_RPB0()		SS2R = 2
-#define PPS_SS2_TO_RPB10()		SS2R = 3
-#define PPS_SS2_TO_RPB9()		SS2R = 4
-#define PPS_SS2_TO_RPC9()		SS2R = 5
-#define PPS_SS2_TO_RPC2()		SS2R = 6
-#define PPS_SS2_TO_RPC4()		SS2R = 7
+#define PPS_SS2I_TO_RPA3()		SS2R = 0
+#define PPS_SS2I_TO_RPB14()		SS2R = 1
+#define PPS_SS2I_TO_RPB0()		SS2R = 2
+#define PPS_SS2I_TO_RPB10()		SS2R = 3
+#define PPS_SS2I_TO_RPB9()		SS2R = 4
+#define PPS_SS2I_TO_RPC9()		SS2R = 5
+#define PPS_SS2I_TO_RPC2()		SS2R = 6
+#define PPS_SS2I_TO_RPC4()		SS2R = 7
 
 #define PPS_OCFA_TO_RPA3()		OCFAR = 0
 #define PPS_OCFA_TO_RPB14()		OCFAR = 1
@@ -328,226 +328,226 @@ void mcu_init(void);                    					//reset the mcu
 
 //PPS output pins
 //group 1
-#define PPS_RPA0_TO_NC()		RPA0R = 0
-#define PPS_RPA0_TO_U1TX()		RPA0R = 1
-#define PPS_RPA0_TO_U2RTS()		RPA0R = 2
-#define PPS_RPA0_TO_SS1()		RPA0R = 3
-#define PPS_RPA0_TO_OC1()		RPA0R = 0b0101
-#define PPS_RPA0_TO_C2OUT()		RPA0R = 0b0111
+#define PPS_NC_TO_RPA0()		RPA0R = 0
+#define PPS_U1TX_TO_RPA0()		RPA0R = 1
+#define PPS_U2RTS_TO_RPA0()		RPA0R = 2
+#define PPS_SS1_TO_RPA0()		RPA0R = 3
+#define PPS_OC1_TO_RPA0()		RPA0R = 0b0101
+#define PPS_C2OUT_TO_RPA0()		RPA0R = 0b0111
 
-#define PPS_RPB3_TO_NC()		RPB3R = 0
-#define PPS_RPB3_TO_U1TX()		RPB3R = 1
-#define PPS_RPB3_TO_U2RTS()		RPB3R = 2
-#define PPS_RPB3_TO_SS1()		RPB3R = 3
-#define PPS_RPB3_TO_OC1()		RPB3R = 0b0101
-#define PPS_RPB3_TO_C2OUT()		RPB3R = 0b0111
+#define PPS_NC_TO_RPB3()		RPB3R = 0
+#define PPS_U1TX_TO_RPB3()		RPB3R = 1
+#define PPS_U2RTS_TO_RPB3()		RPB3R = 2
+#define PPS_SS1_TO_RPB3()		RPB3R = 3
+#define PPS_OC1_TO_RPB3()		RPB3R = 0b0101
+#define PPS_C2OUT_TO_RPB3()		RPB3R = 0b0111
 
-#define PPS_RPB4_TO_NC()		RPB4R = 0
-#define PPS_RPB4_TO_U1TX()		RPB4R = 1
-#define PPS_RPB4_TO_U2RTS()		RPB4R = 2
-#define PPS_RPB4_TO_SS1()		RPB4R = 3
-#define PPS_RPB4_TO_OC1()		RPB4R = 0b0101
-#define PPS_RPB4_TO_C2OUT()		RPB4R = 0b0111
+#define PPS_NC_TO_RPB4()		RPB4R = 0
+#define PPS_U1TX_TO_RPB4()		RPB4R = 1
+#define PPS_U2RTS_TO_RPB4()		RPB4R = 2
+#define PPS_SS1_TO_RPB4()		RPB4R = 3
+#define PPS_OC1_TO_RPB4()		RPB4R = 0b0101
+#define PPS_C2OUT_TO_RPB4()		RPB4R = 0b0111
 
-#define PPS_RPB15_TO_NC()		RPB15R = 0
-#define PPS_RPB15_TO_U1TX()		RPB15R = 1
-#define PPS_RPB15_TO_U2RTS()		RPB15R = 2
-#define PPS_RPB15_TO_SS1()		RPB15R = 3
-#define PPS_RPB15_TO_OC1()		RPB15R = 0b0101
-#define PPS_RPB15_TO_C2OUT()		RPB15R = 0b0111
+#define PPS_NC_TO_RPB15()		RPB15R = 0
+#define PPS_U1TX_TO_RPB15()		RPB15R = 1
+#define PPS_U2RTS_TO_RPB15()		RPB15R = 2
+#define PPS_SS1_TO_RPB15()		RPB15R = 3
+#define PPS_OC1_TO_RPB15()		RPB15R = 0b0101
+#define PPS_C2OUT_TO_RPB15()		RPB15R = 0b0111
 
-#define PPS_RPB7_TO_NC()		RPB7R = 0
-#define PPS_RPB7_TO_U1TX()		RPB7R = 1
-#define PPS_RPB7_TO_U2RTS()		RPB7R = 2
-#define PPS_RPB7_TO_SS1()		RPB7R = 3
-#define PPS_RPB7_TO_OC1()		RPB7R = 0b0101
-#define PPS_RPB7_TO_C2OUT()		RPB7R = 0b0111
+#define PPS_NC_TO_RPB7()		RPB7R = 0
+#define PPS_U1TX_TO_RPB7()		RPB7R = 1
+#define PPS_U2RTS_TO_RPB7()		RPB7R = 2
+#define PPS_SS1_TO_RPB7()		RPB7R = 3
+#define PPS_OC1_TO_RPB7()		RPB7R = 0b0101
+#define PPS_C2OUT_TO_RPB7()		RPB7R = 0b0111
 
-#define PPS_RPC7_TO_NC()		RPC7R = 0
-#define PPS_RPC7_TO_U1TX()		RPC7R = 1
-#define PPS_RPC7_TO_U2RTS()		RPC7R = 2
-#define PPS_RPC7_TO_SS1()		RPC7R = 3
-#define PPS_RPC7_TO_OC1()		RPC7R = 0b0101
-#define PPS_RPC7_TO_C2OUT()		RPC7R = 0b0111
+#define PPS_NC_TO_RPC7()		RPC7R = 0
+#define PPS_U1TX_TO_RPC7()		RPC7R = 1
+#define PPS_U2RTS_TO_RPC7()		RPC7R = 2
+#define PPS_SS1_TO_RPC7()		RPC7R = 3
+#define PPS_OC1_TO_RPC7()		RPC7R = 0b0101
+#define PPS_C2OUT_TO_RPC7()		RPC7R = 0b0111
 
-#define PPS_RPC0_TO_NC()		RPC0R = 0
-#define PPS_RPC0_TO_U1TX()		RPC0R = 1
-#define PPS_RPC0_TO_U2RTS()		RPC0R = 2
-#define PPS_RPC0_TO_SS1()		RPC0R = 3
-#define PPS_RPC0_TO_OC1()		RPC0R = 0b0101
-#define PPS_RPC0_TO_C2OUT()		RPC0R = 0b0111
+#define PPS_NC_TO_RPC0()		RPC0R = 0
+#define PPS_U1TX_TO_RPC0()		RPC0R = 1
+#define PPS_U2RTS_TO_RPC0()		RPC0R = 2
+#define PPS_SS1_TO_RPC0()		RPC0R = 3
+#define PPS_OC1_TO_RPC0()		RPC0R = 0b0101
+#define PPS_C2OUT_TO_RPC0()		RPC0R = 0b0111
 
-#define PPS_RPC5_TO_NC()		RPC5R = 0
-#define PPS_RPC5_TO_U1TX()		RPC5R = 1
-#define PPS_RPC5_TO_U2RTS()		RPC5R = 2
-#define PPS_RPC5_TO_SS1()		RPC5R = 3
-#define PPS_RPC5_TO_OC1()		RPC5R = 0b0101
-#define PPS_RPC5_TO_C2OUT()		RPC5R = 0b0111
+#define PPS_NC_TO_RPC5()		RPC5R = 0
+#define PPS_U1TX_TO_RPC5()		RPC5R = 1
+#define PPS_U2RTS_TO_RPC5()		RPC5R = 2
+#define PPS_SS1_TO_RPC5()		RPC5R = 3
+#define PPS_OC1_TO_RPC5()		RPC5R = 0b0101
+#define PPS_C2OUT_TO_RPC5()		RPC5R = 0b0111
 
 
 //group 2
-#define PPS_RPA1_TO_NC()		RPA1R = 0
-#define PPS_RPA1_TO_SDO1()		RPA1R = 0b0011
-#define PPS_RPA1_TO_SDO2()		RPA1R = 0b0100
-#define PPS_RPA1_TO_OC2()		RPA1R = 0b0101
-#define PPS_RPA1_TO_C3OUT()		RPA1R = 0b0111
+#define PPS_NC_TO_RPA1()		RPA1R = 0
+#define PPS_SDO1_TO_RPA1()		RPA1R = 0b0011
+#define PPS_SDO2_TO_RPA1()		RPA1R = 0b0100
+#define PPS_OC2_TO_RPA1()		RPA1R = 0b0101
+#define PPS_C3OUT_TO_RPA1()		RPA1R = 0b0111
 
-#define PPS_RPB5_TO_NC()		RPB5R = 0
-#define PPS_RPB5_TO_SDO1()		RPB5R = 0b0011
-#define PPS_RPB5_TO_SDO2()		RPB5R = 0b0100
-#define PPS_RPB5_TO_OC2()		RPB5R = 0b0101
-#define PPS_RPB5_TO_C3OUT()		RPB5R = 0b0111
+#define PPS_NC_TO_RPB5()		RPB5R = 0
+#define PPS_SDO1_TO_RPB5()		RPB5R = 0b0011
+#define PPS_SDO2_TO_RPB5()		RPB5R = 0b0100
+#define PPS_OC2_TO_RPB5()		RPB5R = 0b0101
+#define PPS_C3OUT_TO_RPB5()		RPB5R = 0b0111
 
-#define PPS_RPB1_TO_NC()		RPB1R = 0
-#define PPS_RPB1_TO_SDO1()		RPB1R = 0b0011
-#define PPS_RPB1_TO_SDO2()		RPB1R = 0b0100
-#define PPS_RPB1_TO_OC2()		RPB1R = 0b0101
-#define PPS_RPB1_TO_C3OUT()		RPB1R = 0b0111
+#define PPS_NC_TO_RPB1()		RPB1R = 0
+#define PPS_SDO1_TO_RPB1()		RPB1R = 0b0011
+#define PPS_SDO2_TO_RPB1()		RPB1R = 0b0100
+#define PPS_OC2_TO_RPB1()		RPB1R = 0b0101
+#define PPS_C3OUT_TO_RPB1()		RPB1R = 0b0111
 
-#define PPS_RPB11_TO_NC()		RPB11R = 0
-#define PPS_RPB11_TO_SDO1()		RPB11R = 0b0011
-#define PPS_RPB11_TO_SDO2()		RPB11R = 0b0100
-#define PPS_RPB11_TO_OC2()		RPB11R = 0b0101
-#define PPS_RPB11_TO_C3OUT()		RPB11R = 0b0111
+#define PPS_NC_TO_RPB11()		RPB11R = 0
+#define PPS_SDO1_TO_RPB11()		RPB11R = 0b0011
+#define PPS_SDO2_TO_RPB11()		RPB11R = 0b0100
+#define PPS_OC2_TO_RPB11()		RPB11R = 0b0101
+#define PPS_C3OUT_TO_RPB11()		RPB11R = 0b0111
 
-#define PPS_RPB8_TO_NC()		RPB8R = 0
-#define PPS_RPB8_TO_SDO1()		RPB8R = 0b0011
-#define PPS_RPB8_TO_SDO2()		RPB8R = 0b0100
-#define PPS_RPB8_TO_OC2()		RPB8R = 0b0101
-#define PPS_RPB8_TO_C3OUT()		RPB8R = 0b0111
+#define PPS_NC_TO_RPB8()		RPB8R = 0
+#define PPS_SDO1_TO_RPB8()		RPB8R = 0b0011
+#define PPS_SDO2_TO_RPB8()		RPB8R = 0b0100
+#define PPS_OC2_TO_RPB8()		RPB8R = 0b0101
+#define PPS_C3OUT_TO_RPB8()		RPB8R = 0b0111
 
-#define PPS_RPA8_TO_NC()		RPA8R = 0
-#define PPS_RPA8_TO_SDO1()		RPA8R = 0b0011
-#define PPS_RPA8_TO_SDO2()		RPA8R = 0b0100
-#define PPS_RPA8_TO_OC2()		RPA8R = 0b0101
-#define PPS_RPA8_TO_C3OUT()		RPA8R = 0b0111
+#define PPS_NC_TO_RPA8()		RPA8R = 0
+#define PPS_SDO1_TO_RPA8()		RPA8R = 0b0011
+#define PPS_SDO2_TO_RPA8()		RPA8R = 0b0100
+#define PPS_OC2_TO_RPA8()		RPA8R = 0b0101
+#define PPS_C3OUT_TO_RPA8()		RPA8R = 0b0111
 
-#define PPS_RPC8_TO_NC()		RPC8R = 0
-#define PPS_RPC8_TO_SDO1()		RPC8R = 0b0011
-#define PPS_RPC8_TO_SDO2()		RPC8R = 0b0100
-#define PPS_RPC8_TO_OC2()		RPC8R = 0b0101
-#define PPS_RPC8_TO_C3OUT()		RPA1R = 0b0111
+#define PPS_NC_TO_RPC8()		RPC8R = 0
+#define PPS_SDO1_TO_RPC8()		RPC8R = 0b0011
+#define PPS_SDO2_TO_RPC8()		RPC8R = 0b0100
+#define PPS_OC2_TO_RPC8()		RPC8R = 0b0101
+#define PPS_C3OUT_TO_RPC8()		RPA1R = 0b0111
 
-#define PPS_RPA9_TO_NC()		RPA9R = 0
-#define PPS_RPA9_TO_SDO1()		RPA9R = 0b0011
-#define PPS_RPA9_TO_SDO2()		RPA9R = 0b0100
-#define PPS_RPA9_TO_OC2()		RPA9R = 0b0101
-#define PPS_RPA9_TO_C3OUT()		RPA9R = 0b0111
+#define PPS_NC_TO_RPA9()		RPA9R = 0
+#define PPS_SDO1_TO_RPA9()		RPA9R = 0b0011
+#define PPS_SDO2_TO_RPA9()		RPA9R = 0b0100
+#define PPS_OC2_TO_RPA9()		RPA9R = 0b0101
+#define PPS_C3OUT_TO_RPA9()		RPA9R = 0b0111
 
 
 //group 3
-#define PPS_RPA2_TO_NC()		RPA2R = 0
-#define PPS_RPA2_TO_SDO1()		RPA2R = 0b0011
-#define PPS_RPA2_TO_SDO2()		RPA2R = 0b0100
-#define PPS_RPA2_TO_OC4()		RPA2R = 0b0101
-#define PPS_RPA2_TO_OC5()		RPA2R = 0b0110
-#define PPS_RPA2_TO_REFCLKO()		RPA2R = 0b0111
+#define PPS_NC_TO_RPA2()		RPA2R = 0
+#define PPS_SDO1_TO_RPA2()		RPA2R = 0b0011
+#define PPS_SDO2_TO_RPA2()		RPA2R = 0b0100
+#define PPS_OC4_TO_RPA2()		RPA2R = 0b0101
+#define PPS_OC5_TO_RPA2()		RPA2R = 0b0110
+#define PPS_REFCO_TO_RPA2()		RPA2R = 0b0111
 
-#define PPS_RPB6_TO_NC()		RPB6R = 0
-#define PPS_RPB6_TO_SDO1()		RPB6R = 0b0011
-#define PPS_RPB6_TO_SDO2()		RPB6R = 0b0100
-#define PPS_RPB6_TO_OC4()		RPB6R = 0b0101
-#define PPS_RPB6_TO_OC5()		RPB6R = 0b0110
-#define PPS_RPB6_TO_REFCLKO()	RPB6R = 0b0111
+#define PPS_NC_TO_RPB6()		RPB6R = 0
+#define PPS_SDO1_TO_RPB6()		RPB6R = 0b0011
+#define PPS_SDO2_TO_RPB6()		RPB6R = 0b0100
+#define PPS_OC4_TO_RPB6()		RPB6R = 0b0101
+#define PPS_OC5_TO_RPB6()		RPB6R = 0b0110
+#define PPS_REFCO_TO_RPB6()		RPB6R = 0b0111
 
-#define PPS_RPA4_TO_NC()		RPA4R = 0
-#define PPS_RPA4_TO_SDO1()		RPA4R = 0b0011
-#define PPS_RPA4_TO_SDO2()		RPA4R = 0b0100
-#define PPS_RPA4_TO_OC4()		RPA4R = 0b0101
-#define PPS_RPA4_TO_OC5()		RPA4R = 0b0110
-#define PPS_RPA4_TO_REFCLKO()		RPA4R = 0b0111
+#define PPS_NC_TO_RPA4()		RPA4R = 0
+#define PPS_SDO1_TO_RPA4()		RPA4R = 0b0011
+#define PPS_SDO2_TO_RPA4()		RPA4R = 0b0100
+#define PPS_OC4_TO_RPA4()		RPA4R = 0b0101
+#define PPS_OC5_TO_RPA4()		RPA4R = 0b0110
+#define PPS_REFCO_TO_RPA4()		RPA4R = 0b0111
 
-#define PPS_RPB13_TO_NC()		RPB13R = 0
-#define PPS_RPB13_TO_SDO1()		RPB13R = 0b0011
-#define PPS_RPB13_TO_SDO2()		RPB13R = 0b0100
-#define PPS_RPB13_TO_OC4()		RPB13R = 0b0101
-#define PPS_RPB13_TO_OC5()		RPB13R = 0b0110
-#define PPS_RPB13_TO_REFCLKO()		RPB13R = 0b0111
+#define PPS_NC_TO_RPB13()		RPB13R = 0
+#define PPS_SDO1_TO_RPB13()		RPB13R = 0b0011
+#define PPS_SDO2_TO_RPB13()		RPB13R = 0b0100
+#define PPS_OC4_TO_RPB13()		RPB13R = 0b0101
+#define PPS_OC5_TO_RPB13()		RPB13R = 0b0110
+#define PPS_REFCO_TO_RPB13()	RPB13R = 0b0111
 
-#define PPS_RPB2_TO_NC()		RPB2R = 0
-#define PPS_RPB2_TO_SDO1()		RPB2R = 0b0011
-#define PPS_RPB2_TO_SDO2()		RPB2R = 0b0100
-#define PPS_RPB2_TO_OC4()		RPB2R = 0b0101
-#define PPS_RPB2_TO_OC5()		RPB2R = 0b0110
-#define PPS_RPB2_TO_REFCLKO()		RPB2R = 0b0111
+#define PPS_NC_TO_RPB2()		RPB2R = 0
+#define PPS_SDO1_TO_RPB2()		RPB2R = 0b0011
+#define PPS_SDO2_TO_RPB2()		RPB2R = 0b0100
+#define PPS_OC4_TO_RPB2()		RPB2R = 0b0101
+#define PPS_OC5_TO_RPB2()		RPB2R = 0b0110
+#define PPS_REFCO_TO_RPB2()		RPB2R = 0b0111
 
-#define PPS_RPC6_TO_NC()		RPC6R = 0
-#define PPS_RPC6_TO_SDO1()		RPC6R = 0b0011
-#define PPS_RPC6_TO_SDO2()		RPC6R = 0b0100
-#define PPS_RPC6_TO_OC4()		RPC6R = 0b0101
-#define PPS_RPC6_TO_OC5()		RPC6R = 0b0110
-#define PPS_RPC6_TO_REFCLKO()		RPC6R = 0b0111
+#define PPS_NC_TO_RPC6()		RPC6R = 0
+#define PPS_SDO1_TO_RPC6()		RPC6R = 0b0011
+#define PPS_SDO2_TO_RPC6()		RPC6R = 0b0100
+#define PPS_OC4_TO_RPC6()		RPC6R = 0b0101
+#define PPS_OC5_TO_RPC6()		RPC6R = 0b0110
+#define PPS_REFCO_TO_RPC6()		RPC6R = 0b0111
 
-#define PPS_RPC1_TO_NC()		RPC1R = 0
-#define PPS_RPC1_TO_SDO1()		RPC1R = 0b0011
-#define PPS_RPC1_TO_SDO2()		RPC1R = 0b0100
-#define PPS_RPC1_TO_OC4()		RPC1R = 0b0101
-#define PPS_RPC1_TO_OC5()		RPC1R = 0b0110
-#define PPS_RPC1_TO_REFCLKO()		RPC1R = 0b0111
+#define PPS_NC_TO_RPC1()		RPC1R = 0
+#define PPS_SDO1_TO_RPC1()		RPC1R = 0b0011
+#define PPS_SDO2_TO_RPC1()		RPC1R = 0b0100
+#define PPS_OC4_TO_RPC1()		RPC1R = 0b0101
+#define PPS_OC5_TO_RPC1()		RPC1R = 0b0110
+#define PPS_REFCO_TO_RPC1()		RPC1R = 0b0111
 
-#define PPS_RPC3_TO_NC()		RPC3R = 0
-#define PPS_RPC3_TO_SDO1()		RPC3R = 0b0011
-#define PPS_RPC3_TO_SDO2()		RPC3R = 0b0100
-#define PPS_RPC3_TO_OC4()		RPC3R = 0b0101
-#define PPS_RPC3_TO_OC5()		RPC3R = 0b0110
-#define PPS_RPC3_TO_REFCLKO()		RPC3R = 0b0111
+#define PPS_NC_TO_RPC3()		RPC3R = 0
+#define PPS_SDO1_TO_RPC3()		RPC3R = 0b0011
+#define PPS_SDO2_TO_RPC3()		RPC3R = 0b0100
+#define PPS_OC4_TO_RPC3()		RPC3R = 0b0101
+#define PPS_OC5_TO_RPC3()		RPC3R = 0b0110
+#define PPS_REFCO_TO_RPC3()		RPC3R = 0b0111
 
 //group 4
-#define PPS_RPA3_TO_NC()		RPA3R = 0
-#define PPS_RPA3_TO_U1RTS()		RPA3R = 0b0001
-#define PPS_RPA3_TO_U2TX()		RPA3R = 0b0010
-#define PPS_RPA3_TO_SS2()		RPA3R = 0b0100
-#define PPS_RPA3_TO_OC3()		RPA3R = 0b0101
-#define PPS_RPA3_TO_C1OUT()		RPA3R = 0b0111
+#define PPS_NC_TO_RPA3()		RPA3R = 0
+#define PPS_U1RTS_TO_RPA3()		RPA3R = 0b0001
+#define PPS_U2TX_TO_RPA3()		RPA3R = 0b0010
+#define PPS_SS2_TO_RPA3()		RPA3R = 0b0100
+#define PPS_OC3_TO_RPA3()		RPA3R = 0b0101
+#define PPS_C1OUT_TO_RPA3()		RPA3R = 0b0111
 
-#define PPS_RPB14_TO_NC()		RPB14R = 0
-#define PPS_RPB14_TO_U1RTS()		RPB14R = 0b0001
-#define PPS_RPB14_TO_U2TX()		RPB14R = 0b0010
-#define PPS_RPB14_TO_SS2()		RPB14R = 0b0100
-#define PPS_RPB14_TO_OC3()		RPB14R = 0b0101
-#define PPS_RPB14_TO_C1OUT()		RPB14R = 0b0111
+#define PPS_NC_TO_RPB14()		RPB14R = 0
+#define PPS_U1RTS_TO_RPB14()	RPB14R = 0b0001
+#define PPS_U2TX_TO_RPB14()		RPB14R = 0b0010
+#define PPS_SS2_TO_RPB14()		RPB14R = 0b0100
+#define PPS_OC3_TO_RPB14()		RPB14R = 0b0101
+#define PPS_C1OUT_TO_RPB14()	RPB14R = 0b0111
 
-#define PPS_RPB0_TO_NC()		RPB0R = 0
-#define PPS_RPB0_TO_U1RTS()		RPB0R = 0b0001
-#define PPS_RPB0_TO_U2TX()		RPB0R = 0b0010
-#define PPS_RPB0_TO_SS2()		RPB0R = 0b0100
-#define PPS_RPB0_TO_OC3()		RPB0R = 0b0101
-#define PPS_RPB0_TO_C1OUT()		RPB0R = 0b0111
+#define PPS_NC_TO_RPB0()		RPB0R = 0
+#define PPS_U1RTS_TO_RPB0()		RPB0R = 0b0001
+#define PPS_U2TX_TO_RPB0()		RPB0R = 0b0010
+#define PPS_SS2_TO_RPB0()		RPB0R = 0b0100
+#define PPS_OC3_TO_RPB0()		RPB0R = 0b0101
+#define PPS_C1OUT_TO_RPB0()		RPB0R = 0b0111
 
-#define PPS_RPB10_TO_NC()		RPB10R = 0
-#define PPS_RPB10_TO_U1RTS()		RPB10R = 0b0001
-#define PPS_RPB10_TO_U2TX()		RPB10R = 0b0010
-#define PPS_RPB10_TO_SS2()		RPB10R = 0b0100
-#define PPS_RPB10_TO_OC3()		RPB10R = 0b0101
-#define PPS_RPB10_TO_C1OUT()		RPB10R = 0b0111
+#define PPS_NC_TO_RPB10()		RPB10R = 0
+#define PPS_U1RTS_TO_RPB10()	RPB10R = 0b0001
+#define PPS_U2TX_TO_RPB10()		RPB10R = 0b0010
+#define PPS_SS2_TO_RPB10()		RPB10R = 0b0100
+#define PPS_OC3_TO_RPB10()		RPB10R = 0b0101
+#define PPS_C1OUT_TO_RPB10()	RPB10R = 0b0111
 
-#define PPS_RPB9_TO_NC()		RPB9R = 0
-#define PPS_RPB9_TO_U1RTS()		RPB9R = 0b0001
-#define PPS_RPB9_TO_U2TX()		RPB9R = 0b0010
-#define PPS_RPB9_TO_SS2()		RPB9R = 0b0100
-#define PPS_RPB9_TO_OC3()		RPB9R = 0b0101
-#define PPS_RPB9_TO_C1OUT()		RPB9R = 0b0111
+#define PPS_NC_TO_RPB9()		RPB9R = 0
+#define PPS_U1RTS_TO_RPB9()		RPB9R = 0b0001
+#define PPS_U2TX_TO_RPB9()		RPB9R = 0b0010
+#define PPS_SS2_TO_RPB9()		RPB9R = 0b0100
+#define PPS_OC3_TO_RPB9()		RPB9R = 0b0101
+#define PPS_C1OUT_TO_RPB9()		RPB9R = 0b0111
 
-#define PPS_RPC9_TO_NC()		RPC9R = 0
-#define PPS_RPC9_TO_U1RTS()		RPC9R = 0b0001
-#define PPS_RPC9_TO_U2TX()		RPC9R = 0b0010
-#define PPS_RPC9_TO_SS2()		RPC9R = 0b0100
-#define PPS_RPC9_TO_OC3()		RPC9R = 0b0101
-#define PPS_RPC9_TO_C1OUT()		RPC9R = 0b0111
+#define PPS_NC_TO_RPC9()		RPC9R = 0
+#define PPS_U1RTS_TO_RPC9()		RPC9R = 0b0001
+#define PPS_U2TX_TO_RPC9()		RPC9R = 0b0010
+#define PPS_SS2_TO_RPC9()		RPC9R = 0b0100
+#define PPS_OC3_TO_RPC9()		RPC9R = 0b0101
+#define PPS_C1OUT_TO_RPC9()		RPC9R = 0b0111
 
-#define PPS_RPC2_TO_NC()		RPC2R = 0
-#define PPS_RPC2_TO_U1RTS()		RPC2R = 0b0001
-#define PPS_RPC2_TO_U2TX()		RPC2R = 0b0010
-#define PPS_RPC2_TO_SS2()		RPC2R = 0b0100
-#define PPS_RPC2_TO_OC3()		RPC2R = 0b0101
-#define PPS_RPC2_TO_C1OUT()		RPC2R = 0b0111
+#define PPS_NC_TO_RPC2()		RPC2R = 0
+#define PPS_U1RTS_TO_RPC2()		RPC2R = 0b0001
+#define PPS_U2TX_TO_RPC2()		RPC2R = 0b0010
+#define PPS_SS2_TO_RPC2()		RPC2R = 0b0100
+#define PPS_OC3_TO_RPC2()		RPC2R = 0b0101
+#define PPS_C1OUT_TO_RPC2()		RPC2R = 0b0111
 
-#define PPS_RPC4_TO_NC()		RPC4R = 0
-#define PPS_RPC4_TO_U1RTS()		RPC4R = 0b0001
-#define PPS_RPC4_TO_U2TX()		RPC4R = 0b0010
-#define PPS_RPC4_TO_SS2()		RPC4R = 0b0100
-#define PPS_RPC4_TO_OC3()		RPC4R = 0b0101
-#define PPS_RPC4_TO_C1OUT()		RPC4R = 0b0111
+#define PPS_NC_TO_RPC4()		RPC4R = 0
+#define PPS_U1RTS_TO_RPC4()		RPC4R = 0b0001
+#define PPS_U2TX_TO_RPC4()		RPC4R = 0b0010
+#define PPS_SS2_TO_RPC4()		RPC4R = 0b0100
+#define PPS_OC3_TO_RPC4()		RPC4R = 0b0101
+#define PPS_C1OUT_TO_RPC4()		RPC4R = 0b0111
 
 //simple multiples
 #define x1(val)				(val)								//multiply val by 1

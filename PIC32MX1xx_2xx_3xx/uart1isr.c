@@ -1,10 +1,5 @@
 #include "uart1isr.h"			//we use uart1
 
-//pinconfiguration
-#define UxTX2RP()			PPS_RPB3_TO_U1TX()			//map u1tx pin to an rp pin
-#define UxRX2RP()			PPS_U1RX_TO_RPA2()			//map u1rx pin to an rp pin
-//end pin configuration
-
 //for U1ART
 #define UxMD				PMD5bits.U1MD		//power management bit
 #define UxMODE				U1MODEbits	//mode register
@@ -57,12 +52,12 @@ void uart1_init(unsigned long baud_rate)
 {
 	_UxTX_BUSY = 0;				//0->not busy, 1->busy
 	//enable the pins
-#if defined(UxRX2RP)
-	UxRX2RP();					//PPS_U1RX_TO_RP(U1RX_RP);
+#if defined(U1RX2RP)
+	U1RX2RP();					//PPS_U1RX_TO_RP(U1RX_RP);
 #endif
 
-#if defined(UxTX2RP)
-	UxTX2RP();					//PPS_U1TX_TO_RP();
+#if defined(U1TX2RP)
+	U1TX2RP();					//PPS_U1TX_TO_RP();
 #endif
 
 
@@ -163,12 +158,12 @@ void uart1_init(unsigned long baud_rate)
 	//bit 10 UTXEN: Transmit Enable bit(1)
 	//1 = Transmit enabled, UxTX pin controlled by UARTx
 	//0 = Transmit disabled, any pending transmission is aborted and buffer is reset. UxTX pin controlled by the PORT register.
-#if defined(UxTX2RP)
+#if defined(U1TX2RP)
 	UxSTA.UTXEN=1;
 #else
 	UxSTA.UTXEN=0;
 #endif
-#if defined(UxRX2RP)
+#if defined(U1RX2RP)
 	UxSTA.URXEN=1;
 #else
 	UxSTA.URXEN=0;

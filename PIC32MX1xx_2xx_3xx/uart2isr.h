@@ -3,6 +3,12 @@
 
 #include "gpio.h"				//we use gpio
 
+//pin configuration
+#define U2TX2RP()			PPS_U2TX_TO_RPB0()			//u1tx pin
+#define U2RX2RP()			PPS_U2RX_TO_RPA1()			//rx pin
+//end pin configuration
+
+
 //#define Mhz					000000ul	//suffix for Mhz
 #define F_UART				(F_PHB)	//8Mhz		//crystal frequency
 #define UART_BR_300			300ul		//buadrate=300
