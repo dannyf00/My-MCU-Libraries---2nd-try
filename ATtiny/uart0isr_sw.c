@@ -107,26 +107,26 @@ void uart0_init(uint32_t bps) {
 	TIMSK&=~(1<<OCIE0A);					//1->enable the interrupt, 0->disable the interrupt
 
 	//configure prescaler and start time0
-	if (F_UART > bps * 256 * 256) {
-		//run timer0 at 1024:1 precaler (max)
-		OCR0A = F_UART / bps / 1024 - 1;			//set the top
-		TCCR0B = (TCCR0B &~0x07) | (0x05 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 1024:1
-	} else if (F_UART > bps * 256 * 64) {
-		//run timer0 at 256:1 prescaler
-		OCR0A = F_UART / bps / 256 - 1;				//set the top
-		TCCR0B = (TCCR0B &~0x07) | (0x04 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 256:1
-	} else if (F_UART > bps * 256 * 8) {
-		//run timer0 at 64:1 prescaler
-		OCR0A = F_UART / bps / 64 - 1;				//set the top
-		TCCR0B = (TCCR0B &~0x07) | (0x03 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 8:1
-	} else if (F_UART >= bps * 256 * 1) {
-		//run at 8:1 prescaler
-		OCR0A = F_UART / bps / 8 - 1;				//set the top
-		TCCR0B = (TCCR0B &~0x07) | (0x02 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 8:1
-	} else {
+	if (F_UART <= bps * 256 * 1) {
 		//run at 1:1 prescaler
 		OCR0A = F_UART / bps / 1 - 1;				//set the top
 		TCCR0B = (TCCR0B &~0x07) | (0x01 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 1:1
+	} else if (F_UART <= bps * 256 * 8) {
+		//run at 8:1 prescaler
+		OCR0A = F_UART / bps / 8 - 1;				//set the top
+		TCCR0B = (TCCR0B &~0x07) | (0x02 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 8:1
+	} else if (F_UART <= bps * 256 * 64) {
+		//run timer0 at 64:1 prescaler
+		OCR0A = F_UART / bps / 64 - 1;				//set the top
+		TCCR0B = (TCCR0B &~0x07) | (0x03 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 8:1
+	} else if (F_UART <= bps * 256 * 256) {
+		//run timer0 at 256:1 prescaler
+		OCR0A = F_UART / bps / 256 - 1;				//set the top
+		TCCR0B = (TCCR0B &~0x07) | (0x04 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 256:1
+	} else {
+		//run timer0 at 1024:1 precaler (max)
+		OCR0A = F_UART / bps / 1024 - 1;			//set the top
+		TCCR0B = (TCCR0B &~0x07) | (0x05 & 0x07);	//0->stop the timer, !0->start the timer. prescaler = 1024:1
 	}
 	//timer0 running now
 
