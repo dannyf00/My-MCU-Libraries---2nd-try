@@ -103,27 +103,27 @@ void uart2_init(uint32_t bps) {
 	
 	//configure prescaler and start time2
 	//prescaler formed by prescaler (1..16) and postscaler (1..16)
-	if (F_UART > bps * 256 * 64) {
-		//run timer2 at 16:1 prescaler + 16:1 postscaler
-		PR2 = F_UART / bps / 256 - 1;		//set the top
-		T2CONbits.T2CKPS = 2;				//0b10->prescaler = 16:1
-		T2CONbits.TOUTPS = 16-1;			//postscaler = 16:1
-	} else if (F_UART > bps * 256 * 8) {
-		//run timer0 at 16:1 prescaler + 4:1 post scaler
-		PR2 = F_UART / bps / 64 - 1;		//set the top
-		T2CONbits.T2CKPS = 2;				//0b10->prescaler = 16:1
-		T2CONbits.TOUTPS = 4-1;				//postscaler = 4:1
-	} else if (F_UART > bps * 256 * 1) {
-		//run at 4:1 prescaler + 2:1 postscaler
-		PR2 = F_UART / bps / 8 - 1;		//set the top
-		T2CONbits.T2CKPS = 1;				//0b01->prescaler = 4:1
-		T2CONbits.TOUTPS = 2 - 1;				//postscaler = 2:1
-	} else {
+	if (F_UART <= bps * 256 * 1) {
 		//run at 1:1 prescaler + 1:1 postscaler
 		PR2 = F_UART / bps / 1 - 1;			//set the top
 		T2CONbits.T2CKPS = 0;				//0b00->prescaler = 1:1
 		T2CONbits.TOUTPS = 1-1;				//postscaler = 1:1
-	}
+	} else if (F_UART <= bps * 256 * 8) {
+		//run at 4:1 prescaler + 2:1 postscaler
+		PR2 = F_UART / bps / 8 - 1;		//set the top
+		T2CONbits.T2CKPS = 1;				//0b01->prescaler = 4:1
+		T2CONbits.TOUTPS = 2 - 1;			//postscaler = 2:1
+	} else if (F_UART <= bps * 256 * 64) {
+		//run timer0 at 16:1 prescaler + 4:1 post scaler
+		PR2 = F_UART / bps / 64 - 1;		//set the top
+		T2CONbits.T2CKPS = 2;				//0b10->prescaler = 16:1
+		T2CONbits.TOUTPS = 4-1;				//postscaler = 4:1
+	} else {		
+		//run timer2 at 16:1 prescaler + 16:1 postscaler
+		PR2 = F_UART / bps / 256 - 1;		//set the top
+		T2CONbits.T2CKPS = 2;				//0b10->prescaler = 16:1
+		T2CONbits.TOUTPS = 16-1;			//postscaler = 16:1
+	}	
 	TMR2ON = 1;								//enable TMR2
 	//timer2 running now
 	//overflow interrupt remains disabled
