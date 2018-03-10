@@ -51,7 +51,7 @@ void tmr3a_init(uint32_t ps, uint32_t pr) {
 					(0<< 7) |						//0->disable snap shot, 1->enable snap shot
 					(0<< 6) |						//0->timer counts right away; 1->timer waits on trigger before counting
 					(0<< 5) |						//0->match interrupt disabled, 1->match interrupt enabled
-					(0<< 4) |						//0->counts down, 1->counts up
+					(1<< 4) |						//0->counts down, 1->counts up
 					(0<< 3) |						//0->capture / compare enabled 1->pwm enabled
 					(0<< 2) |						//0->edge count for capture; 1->edge time for capture
 					(0x02) |						//0x00->reserved, 0x01->one shot, 0x02->periodic, 0x03->capture
@@ -61,7 +61,7 @@ void tmr3a_init(uint32_t ps, uint32_t pr) {
 	TMRx->TAPR = (ps - 1) & 0xff;							//set the prescaler
 	TMRx->TAILR= (pr - 1) & 0xffff;							//set the top
 	//reset counter
-	TMRx->TAR = 0;
+	TMRx->TAV = 0;
 
 	//clear ISR flags, disable isr
 	//disable all interrupt
@@ -99,7 +99,7 @@ void tmr3b_init(uint32_t ps, uint32_t pr) {
 					(0<< 7) |						//0->disable snap shot, 1->enable snap shot
 					(0<< 6) |						//0->timer counts right away; 1->timer waits on trigger before counting
 					(0<< 5) |						//0->match interrupt disabled, 1->match interrupt enabled
-					(0<< 4) |						//0->counts down, 1->counts up
+					(1<< 4) |						//0->counts down, 1->counts up
 					(0<< 3) |						//0->capture / compare enabled 1->pwm enabled
 					(0<< 2) |						//0->edge count for capture; 1->edge time for capture
 					(0x02) |						//0x00->reserved, 0x01->one shot, 0x02->periodic, 0x03->capture
@@ -109,7 +109,7 @@ void tmr3b_init(uint32_t ps, uint32_t pr) {
 	TMRx->TBPR = (ps - 1) & 0xff;							//set the prescaler
 	TMRx->TBILR= (pr - 1) & 0xffff;							//set the top
 	//reset counter
-	TMRx->TBR = 0;
+	TMRx->TBV = 0;
 
 	//clear ISR flags, disable isr
 	//disable all interrupt

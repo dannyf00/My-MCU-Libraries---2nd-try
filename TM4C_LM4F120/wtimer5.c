@@ -61,7 +61,7 @@ void wtmr5a_init(uint32_t ps, uint32_t pr) {
 	TMRx->TAPR = (ps - 1) & 0xffff;							//set the prescaler
 	TMRx->TAILR= (pr - 1);							//set the top
 	//reset counter
-	TMRx->TAR = 0;
+	TMRx->TAV = 0;
 
 	//clear ISR flags, disable isr
 	//disable all interrupt
@@ -109,7 +109,7 @@ void wtmr5b_init(uint32_t ps, uint32_t pr) {
 	TMRx->TBPR = (ps - 1) & 0xffff;							//set the prescaler
 	TMRx->TBILR= (pr - 1);							//set the top
 	//reset counter
-	TMRx->TBR = 0;
+	TMRx->TBV = 0;
 
 	//clear ISR flags, disable isr
 	//disable all interrupt
