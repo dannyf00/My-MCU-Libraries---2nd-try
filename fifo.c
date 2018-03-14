@@ -1,39 +1,51 @@
-/* Circular buffer example, keeps one slot open */
+#include "fifo.h"						//we use fifo
 
-#include "fifo.h"					//we use fifo / circular buffer
+//hardware configuration
+//end hardware configuration
 
-/* Opaque buffer element type.  This would be defined by the application. */
+//global defines
 
-void cb_init(CircularBuffer *cb, unsigned short size, void *array) {
-    cb->size  = size /*+ 1*/; /* include empty elem */
-    cb->start = 0;
-    cb->end   = 0;
-    cb->elems = (ElemType *)array;
+//initialize buffer
+FIFO_CNT fifo_init(FIFO_TypeDef *fifo, uint8_t *buffer, FIFO_CNT size) {
+	fifo->begin = 0;
+	fifo->end = 0;
+	fifo->buffer = buffer;
+	fifo->size = size;
+	return size;
 }
 
-unsigned char cb_isfull(CircularBuffer *cb) {
-    return (cb->end + 1) % cb->size == cb->start; }
-
-unsigned char cb_isempty(CircularBuffer *cb) {
-    return cb->end == cb->start; }
-
-/* Write an element, overwriting oldest element if buffer is full. App can
-   choose to avoid the overwrite by checking cbIsFull(). */
-void cb_write(CircularBuffer *cb, ElemType elem) {
-    cb->elems[cb->end] = elem;
-    cb->end = (cb->end + 1) % cb->size;
-    if (cb->end == cb->start)
-        //cb->start = (cb->start + 1) % cb->size; /* full, overwrite */
-        {
-        	cb->start+=1; if (cb->start==cb->size) cb->start=0;
-        }
+//reset fifo -> all data is lost and fifo becomes empty
+FIFO_CNT fifo_reset(FIFO_TypeDef *fifo) {
+	fifo->begin = fifo->end = 0;
+	return fifo->size;
+}
+	
+//advance the end
+FIFO_CNT fifo_adv(FIFO_TypeDef *fifo, FIFO_CNT index) {
+	if (++index == fifo->size) 	index = 0;
+	return index;
 }
 
-/* Read oldest element. App must ensure !cbIsEmpty() first. */
-ElemType cb_read(CircularBuffer *cb) {
-    ElemType tmp = cb->elems[cb->start];
-    //cb->start = (cb->start + 1) % cb->size;
-    cb->start+=1; if (cb->start==cb->size) cb->start = 0;
-    return tmp;
+//write data to fifo
+uint8_t fifo_put(FIFO_TypeDef *fifo, uint8_t dat) {
+	fifo->buffer[fifo->end]=dat;			//put data to fifo
+	fifo->end = fifo_adv(fifo, fifo->end);	//advance end point
+	return dat;
 }
 
+//get data from fifo
+uint8_t fifo_get(FIFO_TypeDef *fifo) {
+	uint8_t dat = fifo->buffer[fifo->begin];	//read the begining data point
+	fifo->begin = fifo_adv(fifo, fifo->begin);	//advance the beginning point
+	return dat;
+}
+
+//if fifo is full
+uint8_t fifo_full(FIFO_TypeDef *fifo) {
+	return fifo_adv(fifo, fifo->end) == fifo->begin;
+}
+
+//if fifo is empty
+uint8_t fifo_empty(FIFO_TypeDef *fifo) {
+	return fifo->begin == fifo->end;
+}

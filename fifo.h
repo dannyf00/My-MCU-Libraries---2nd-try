@@ -1,35 +1,39 @@
-#ifndef FIFO_H_INCLUDED
-#define FIFO_H_INCLUDED
+#ifndef _FIFO_H
+#define _FIFO_H
 
-/* Circular buffer example, keeps one slot open */
+#include <stdint.h>
 
-#include <stdio.h>
-#include "fifo.h"					//we use fifo / circular buffer
+//hardware configuration
+#define FIFOSIZE_T			uint8_t		//for buffers with less than 256 elements. otherwise, use uint16/32_t
+//#define FIFOCELL_T		uint8_t		//individual element of fifo
+//end hardware configuration
 
-/* Opaque buffer element type.  This would be defined by the application. */
-typedef unsigned short ElemType;
-
-/* Circular buffer object */
+//global defines
 typedef struct {
-    unsigned short         size;   /* maximum number of elements           */
-    unsigned short         start;  /* index of oldest element              */
-    unsigned short         end;    /* index at which to write new element  */
-    ElemType   *elems;  /* vector of elements                   */
-} CircularBuffer;
+	FIFOSIZE_T start;					//startning of buffer
+	FIFOSIZE_T end;						//end point of buffer
+	uint8_t  *buffer;					//buffer / FIFOCELL_T
+	FIFOSIZE_T size;					//size of buffer
+} FIFO_TypeDef;
 
-//initialize the fifo
-void cb_init(CircularBuffer *cb, unsigned short size, void *array);
+//initialize buffer
+FIFOSIZE_T fifo_init(FIFO_TypeDef *fifo, uint8_t *buffer, FIFOSIZE_T size);
 
-//1 if cb is full
-unsigned char cb_isfull(CircularBuffer *cb);
+//reset fifo -> all data is lost and fifo becomes empty
+FIFOSIZE_T fifo_reset(FIFO_TypeDef *fifo);
+	
+//advance the end
+FIFOSIZE_T fifo_adv(FIFO_TypeDef *fifo, FIFOSIZE_T index);
 
-unsigned char cb_isempty(CircularBuffer *cb);
+//write data to fifo
+uint8_t fifo_put(FIFO_TypeDef *fifo, uint8_t dat);
 
-/* Write an element, overwriting oldest element if buffer is full. App can
-   choose to avoid the overwrite by checking cbIsFull(). */
-void cb_write(CircularBuffer *cb, ElemType elem);
+//get data from fifo
+uint8_t fifo_get(FIFO_TypeDef *fifo);
 
-/* Read oldest element. App must ensure !cbIsEmpty() first. */
-ElemType cb_read(CircularBuffer *cb);
+//if fifo is full
+uint8_t fifo_full(FIFO_TypeDef *fifo);
 
-#endif // FIFO_H_INCLUDED
+//if fifo is empty
+uint8_t fifo_empty(FIFO_TypeDef *fifo);
+#endif
