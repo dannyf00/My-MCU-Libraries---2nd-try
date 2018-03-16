@@ -1,0 +1,3 @@
+routines (mostly software uart routines) for PIC18F25K22.
+
+they should work on most modern PIC16/18 chips.
