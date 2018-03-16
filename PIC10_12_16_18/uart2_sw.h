@@ -21,6 +21,10 @@
 //global variables
 
 //tmr2 isr - needs to be inserted into main as isr
+//usage:
+//in main.c, declare an isr
+//in the ISR:
+//  if (TMR2IF) tmr2_isr();	//TMR2IF is cleared inside tmr2_isr()
 void tmr2_isr(void);
 
 //look-up table for 4 bit reversal, in place

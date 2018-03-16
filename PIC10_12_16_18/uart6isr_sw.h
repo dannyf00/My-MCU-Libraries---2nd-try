@@ -1,10 +1,10 @@
-#ifndef UART2ISR_SW_H_INCLUDED
-#define UART2ISR_SW_H_INCLUDED
+#ifndef UART6ISR_SW_H_INCLUDED
+#define UART6ISR_SW_H_INCLUDED
 
-//software uart, timer2 for timebase, tx only
+//software uart, timer6 for timebase, tx only
 //limitations:
 //1. TX only, interrupt-driven
-//2. TIMER2 is used
+//2. TIMER6 is used
 //3. MCU needs to run at at least 1Mhz: up to 9600bps@2Mhz tested to work on internal rc oscillator
 //4. Not all frequencies are equal / supported: F_CPU up to 8*256*UART baud rate
 //5. Be mindful of baud rate errors
@@ -23,19 +23,19 @@
 //usage:
 //in main.c, declare an isr
 //in the ISR:
-//  if (TMR2IF) tmr2_isr();	//TMR2IF is cleared inside tmr2_isr()
-//timer2/uart overflow isr
-void tmr2_isr(void);
+//  if (TMR6IE && TMR6IF) tmr6_isr();	//TMR6IF is cleared inside tmr6_isr()
+//timer6/uart overflow isr
+void tmr6_isr(void);
 
 //rest uart using usi + timer0 as clock
 //1-start bit, 1-stop bit, 8-data
-void uart2_init(uint32_t bps);
+void uart6_init(uint32_t bps);
 //send a char
-void uart2_put(char ch);
+void uart6_put(char ch);
 
 //send a string
-void uart2_puts(char *str);
+void uart6_puts(char *str);
 
-char uart2_busy(void);
+char uart6_busy(void);
 
 #endif // UART0_USI_H_INCLUDED
