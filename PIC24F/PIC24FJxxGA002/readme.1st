@@ -1,0 +1,3 @@
+drivers for PIC24FJxxGA002 family of chips
+
+software uart implementation, TIMER2/3 as timebase
