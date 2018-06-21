@@ -136,22 +136,22 @@ void exti_init(GPIO_TypeDef * gpio, uint16_t pin, uint8_t edge) {
 	}
 	//configure the port
 	switch (pin) {
-	case (1<< 0): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x000f) | (gpio - GPIOA); break;
-	case (1<< 1): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x00f0) | (gpio - GPIOA); break;
-	case (1<< 2): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x0f00) | (gpio - GPIOA); break;
-	case (1<< 3): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0xf000) | (gpio - GPIOA); break;
-	case (1<< 4): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x000f) | (gpio - GPIOA); break;
-	case (1<< 5): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x00f0) | (gpio - GPIOA); break;
-	case (1<< 6): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x0f00) | (gpio - GPIOA); break;
-	case (1<< 7): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0xf000) | (gpio - GPIOA); break;
-	case (1<< 8): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x000f) | (gpio - GPIOA); break;
-	case (1<< 9): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x00f0) | (gpio - GPIOA); break;
-	case (1<<10): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x0f00) | (gpio - GPIOA); break;
-	case (1<<11): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0xf000) | (gpio - GPIOA); break;
-	case (1<<12): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x000f) | (gpio - GPIOA); break;
-	case (1<<13): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x00f0) | (gpio - GPIOA); break;
-	case (1<<14): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x0f00) | (gpio - GPIOA); break;
-	case (1<<15): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0xf000) | (gpio - GPIOA); break;
+	case (1<< 0): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x000f) | ((gpio - GPIOA) <<  0); break;
+	case (1<< 1): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x00f0) | ((gpio - GPIOA) <<  4); break;
+	case (1<< 2): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0x0f00) | ((gpio - GPIOA) <<  8); break;
+	case (1<< 3): AFIO->EXTICR[0] = (AFIO->EXTICR[0] &~0xf000) | ((gpio - GPIOA) << 12); break;
+	case (1<< 4): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x000f) | ((gpio - GPIOA) <<  0); break;
+	case (1<< 5): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x00f0) | ((gpio - GPIOA) <<  4); break;
+	case (1<< 6): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0x0f00) | ((gpio - GPIOA) <<  8); break;
+	case (1<< 7): AFIO->EXTICR[1] = (AFIO->EXTICR[1] &~0xf000) | ((gpio - GPIOA) << 12); break;
+	case (1<< 8): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x000f) | ((gpio - GPIOA) <<  0); break;
+	case (1<< 9): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x00f0) | ((gpio - GPIOA) <<  4); break;
+	case (1<<10): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0x0f00) | ((gpio - GPIOA) <<  8); break;
+	case (1<<11): AFIO->EXTICR[2] = (AFIO->EXTICR[2] &~0xf000) | ((gpio - GPIOA) << 12); break;
+	case (1<<12): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x000f) | ((gpio - GPIOA) <<  0); break;
+	case (1<<13): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x00f0) | ((gpio - GPIOA) <<  4); break;
+	case (1<<14): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0x0f00) | ((gpio - GPIOA) <<  8); break;
+	case (1<<15): AFIO->EXTICR[3] = (AFIO->EXTICR[3] &~0xf000) | ((gpio - GPIOA) << 12); break;
 	};
 }
 
