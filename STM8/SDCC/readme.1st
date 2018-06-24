@@ -1,0 +1,5 @@
+Previous files are provided to support of IAR and Cosmic compilers, using the stock stm8s.h
+
+The following stm8s.h has been modified to support SDCC. Tested on a STM8S105 board.
+
+the file is largely based on the modified stm8s.h here: https://github.com/roshbaby/stm8s-sdcc
