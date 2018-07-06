@@ -14,6 +14,7 @@ static void empty_handler(void) {
 }
 
 //global variables
+static void (* _tim_ovfisrptr)(void)=empty_handler;				//tim3_ptr pointing to empty_handler by default
 static void (* _tim_oc1isrptr)(void)=empty_handler;				//tim3_ptr pointing to empty_handler by default
 static void (* _tim_oc2isrptr)(void)=empty_handler;				//tim3_ptr pointing to empty_handler by default
 static void (* _tim_oc3isrptr)(void)=empty_handler;				//tim3_ptr pointing to empty_handler by default
@@ -53,6 +54,12 @@ void TIM3_IRQHandler(void) {
 		TIMx->CCR4 += _tim_oc4;			//update the output compare register
 		_tim_oc4isrptr();				//execute user handler
 	}
+
+	//ovf portion
+	if (TIMx->SR & TIM_SR_UIF) {		//output compare 2 flag is set
+		TIMx->SR &=~TIM_SR_UIF;			//clear the flag
+		_tim_ovfisrptr();				//execute user handler
+	}
 }
 
 //initialize tim3 to use compare channels as timers
@@ -85,6 +92,23 @@ void tim3_init(uint32_t ps) {
 
 	//enable the timer.
 	TIMx->CR1 |= TIM_CR1_CEN;			//enable the timer
+}
+
+//install user handler for ovf
+void tim3_act(void (*isr_ptr)(void)) {
+	NVIC_DisableIRQ(TIMx_CC_IRQn);		//disable irq
+
+	_tim_ovfisrptr = isr_ptr;			//install user handler
+
+	//clear the flag
+	TIMx->SR &=~TIM_SR_UIF;			//clear the interrupt flag
+	TIMx->DIER |= TIM_DIER_UIE;		//enable the isr
+
+	NVIC_EnableIRQ(TIMx_CC_IRQn);		//enable irq
+	//priorities not set -> default values used.
+
+	TIMx->EGR |= TIM_EGR_UG;			//force an update
+
 }
 
 //set tim3_oc1 period

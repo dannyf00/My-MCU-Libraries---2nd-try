@@ -14,6 +14,7 @@ static void empty_handler(void) {
 }
 
 //global variables
+static void (* _tim_ovfisrptr)(void)=empty_handler;				//tim4_ptr pointing to empty_handler by default
 static void (* _tim_oc1isrptr)(void)=empty_handler;				//tim4_ptr pointing to empty_handler by default
 static void (* _tim_oc2isrptr)(void)=empty_handler;				//tim4_ptr pointing to empty_handler by default
 static void (* _tim_oc3isrptr)(void)=empty_handler;				//tim4_ptr pointing to empty_handler by default
@@ -29,14 +30,14 @@ void TIM4_IRQHandler(void) {
 	//oc1 portion
 	if (TIMx->SR & TIM_SR_CC1IF) {		//output compare 1 flag is set
 		TIMx->SR &=~TIM_SR_CC1IF;		//clear the flag
-		TIMx->CCR1 += _tim_oc1;			//update the output compare register
+		//TIMx->CCR1 += _tim_oc1;			//update the output compare register
 		_tim_oc1isrptr();				//execute user handler
 	}
 
 	//oc2 portion
 	if (TIMx->SR & TIM_SR_CC2IF) {		//output compare 2 flag is set
 		TIMx->SR &=~TIM_SR_CC2IF;		//clear the flag
-		TIMx->CCR2 += _tim_oc2;			//update the output compare register
+		//TIMx->CCR2 += _tim_oc2;			//update the output compare register
 		_tim_oc2isrptr();				//execute user handler
 	}
 
@@ -53,6 +54,14 @@ void TIM4_IRQHandler(void) {
 		TIMx->CCR4 += _tim_oc4;			//update the output compare register
 		_tim_oc4isrptr();				//execute user handler
 	}
+
+	//ovf portion
+	if (TIMx->SR & TIM_SR_UIF) {		//output compare 2 flag is set
+		TIMx->SR &=~TIM_SR_UIF;		//clear the flag
+		_tim_ovfisrptr();				//execute user handler
+	}
+
+
 }
 
 //initialize tim4 to use compare channels as timers
@@ -87,6 +96,24 @@ void tim4_init(uint32_t ps) {
 	TIMx->CR1 |= TIM_CR1_CEN;			//enable the timer
 }
 
+//install user handler for ovf
+void tim4_act1(void (*isr_ptr)(void)) {
+	NVIC_DisableIRQ(TIMx_CC_IRQn);		//disable irq
+
+	_tim_ovfisrptr = isr_ptr;			//install user handler
+
+	//clear the flag
+	TIMx->SR &=~TIM_SR_UIF;				//clear the interrupt flag
+	TIMx->DIER |= TIM_DIER_UIE;			//enable the isr
+
+	NVIC_EnableIRQ(TIMx_CC_IRQn);		//enable irq
+	//priorities not set -> default values used.
+
+	TIMx->EGR |= TIM_EGR_UG;			//force an update
+
+}
+
+
 //set tim4_oc1 period
 //pr is 16-bit. 32-bit used for compatability;
 void tim4_setpr1(uint32_t pr) {
@@ -99,8 +126,8 @@ void tim4_setpr1(uint32_t pr) {
 	//TIMx->DIER &=~TIM_DIER_CC1IE;		//disable the isr
 }
 
-//install user handler
-void tim4_act1(void (*isr_ptr)(void)) {
+//install user handler for ovf
+void tim4_act(void (*isr_ptr)(void)) {
 	NVIC_DisableIRQ(TIMx_CC_IRQn);		//disable irq
 
 	_tim_oc1isrptr = isr_ptr;			//install user handler

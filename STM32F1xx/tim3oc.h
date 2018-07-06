@@ -20,6 +20,7 @@
 //initialize tim3 to use compare channels as timers
 //16-bit prescaler. 32-bit used for compatability
 void tim3_init(uint32_t ps);
+void tim3_act(void (*isr_ptr)(void));
 
 //set tim3_oc1 period
 //pr is 16-bit. 32-bit used for compatability;
